@@ -8,7 +8,12 @@ import { RxGithubLogo } from "react-icons/rx";
 import { TbBrandLinkedin } from "react-icons/tb";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
-import LoaderManual from "../Loader/LoaderManual.jsx";
+import { IoLogoYoutube } from "react-icons/io";
+
+const API_URL = import.meta.env.VITE_API_URL;
+
+
+
 import { useState } from "react";
 function Footer() {
   const { user, loginWithRedirect, isAuthenticated, logout } = useAuth0();
@@ -23,7 +28,7 @@ function Footer() {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:3000/jepairbazaar/payment"
+        `${API_URL}/payment`
       );
       if (response.status === 200) {
         window.location.href = response.data.url;
@@ -69,13 +74,13 @@ function Footer() {
               <p className="font-semibold hover:text-[#e97100] mt-6">GitHub</p>
             </Link>
             <Link
-              to={"/about"}
+              to={"/ourteam"}
               onClick={() => {
                 if (window.location.pathname === "/about") scrollToTop();
               }}
             >
               <p className="font-semibold hover:text-[#e97100] mt-3">
-                Community
+                  Our Team
               </p>
             </Link>
           </div>
@@ -144,7 +149,8 @@ function Footer() {
             >
               <h3 className="hover:text-[#e97100] mt-4 lg:mt-0">Contact Us</h3>
             </Link>
-            <Link onClick={loginWithRedirect}>
+
+            <Link to={"/loginsingup"}>
               <h3 className="hover:text-[#e97100] bg-[#224c7d] md:px-2 rounded-sm inline mt-4 lg:mt-0 ">
                 Register as a Professional
               </h3>
@@ -179,6 +185,11 @@ function Footer() {
             <p>2025 Jepair Bazzar . All Right Reserved</p>
           </div>
           <div className="flex gap-x-8 text-2xl mt-6 lg:mt-0 ml-16 lg:ml-0">
+          <Link to={"https://www.linkedin.com/in/vipin-kumar-04581431a/"}>
+              <span>
+                <IoLogoYoutube className="hover:text-[#11294c] " />
+              </span>
+            </Link>
             <Link to={""}>
               <span>
                 <TfiFacebook className="hover:text-[#11294c] " />

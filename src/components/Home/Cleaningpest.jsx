@@ -14,7 +14,7 @@ function cleaningpest() {
     }
   };
   return (
-    <div className="text-center bg-[#f2f2f2] p-10 ">
+    <div className="text-center dark:bg-[#343a46]  bg-[#f2f2f2] p-10 ">
       <h1 className="font-bold text-4xl text-[#3a76cb] ">
         Cleaning-Pest Control Services
       </h1>
@@ -31,7 +31,7 @@ function cleaningpest() {
         </div>
         <div className="w-[200px] h-[300px] bg-white rounded-xl shadow-xl hover:shadow-blue-300">
           <img src="bathroom-cleaning.jpg" className="rounded" />
-          <span className="block font-semibold mt-4">Bathroom Cleaninh</span>
+          <span className="block font-semibold mt-4">Bathroom Cleaning</span>
           <button
             className="bg-orange-500 py-1.5 text-white px-3 font-bold rounded-lg mt-4 transition-all hover:-translate-y-1 hover:bg-orange-600"
             onClick={bookProcessFunction}

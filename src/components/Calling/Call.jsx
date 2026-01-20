@@ -10,7 +10,7 @@ function Call() {
           to="https://wa.me/918102303285"
           title="Chat on WhatsApp"
           target="_blank"
-          className="relative inline-flex items-center justify-center h-10 w-10 rounded-full bg-[#224c7d] text-[#00ff00] shadow-lg text-xl"
+          className="relative inline-flex   items-center justify-center h-10 w-10 rounded-full bg-[#224c7d] text-[#00ff00] shadow-lg text-xl"
         >
           <IoLogoWhatsapp />
         </Link>

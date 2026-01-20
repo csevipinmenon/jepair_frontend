@@ -6,10 +6,13 @@ import { handlerError, handlerSuccess } from "../../utils.js";
 import ReCAPTCHA from "react-google-recaptcha";
 import { TbRuler } from "react-icons/tb";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 function Login() {
   const [reCaptchaVerified, setRecaptchaVerified] = useState(false); //for recaptcha
   function recaptchFunction(value) {
-    console.log("Captcha value:", value);
+    // console.log("Captcha value:", value);
     setRecaptchaVerified(true);
   }
 
@@ -37,7 +40,7 @@ function Login() {
     }
     try {
       setLoading(true); // Start loader
-      const url = "http://localhost:3000/jepairbazaar/enquiry";
+      const url = `${API_URL}/enquiry`;
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -47,7 +50,7 @@ function Login() {
       });
 
       const result = await response.json();
-      console.log(result);
+     
 
       const { message, success, error } = result;
       if (success) {
@@ -71,9 +74,9 @@ function Login() {
   return (
     <>
       {showEmailotp && <Emailotp />}
-      <div className="absolute right-3 top-80 lg:right-20 lg:top-36 z-20 bg-white shadow-2xl rounded-2xl overflow-hidden ">
+      <div className="absolute right-3  hidden sm:block top-80 lg:right-1 lg:top-28 z-20  bg-white shadow-2xl rounded-2xl overflow-hidden ">
         <div className="mt-3">
-          <form className="py-5 px-10" onSubmit={loginHomeFunction}>
+          <form className="py-5  px-4  lg:px-4" onSubmit={loginHomeFunction}>
             <div className=" ">
               <label htmlFor="name" className="block font-bold  ">
                 Name
@@ -86,7 +89,7 @@ function Login() {
                 value={loginInfo.name}
                 onChange={handleChange}
                 placeholder="Enter your name"
-                className="w-full border border-orange-400  px-2 py-1.5 focus:outline-1 focus:outline-blue-500"
+                className="w-full border border-orange-400   px-2 py-1.5 focus:outline-1 focus:outline-blue-500"
               />
             </div>
 

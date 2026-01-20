@@ -3,6 +3,9 @@ import { handlerError, handlerSuccess } from "../../utils.js";
 import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 function Emailotp() {
   const [showAd, setShowAd] = useState(true);
   const [emailOtpInfo, setEmailOtpInfo] = useState({
@@ -35,7 +38,7 @@ function Emailotp() {
     }
     try {
       setLoading(true); // Start loader
-      const url = "http://localhost:3000/jepairbazaar/enquiry/verify";
+      const url = `${API_URL}/enquiry/verify`;
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -44,7 +47,7 @@ function Emailotp() {
         body: JSON.stringify(emailOtpInfo),
       });
       const result = await response.json();
-      console.log(result);
+      
 
       const { success, message, error } = result;
       if (success) {
@@ -60,6 +63,8 @@ function Emailotp() {
         handlerError("Something went wrong in OTP verification");
       }
     } catch (error) {
+      console.log(error);
+      
       handlerError("Network error or Server unavailable");
     } finally {
       setLoading(false); // Stop loader

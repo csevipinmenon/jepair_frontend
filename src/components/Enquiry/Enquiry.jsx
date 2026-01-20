@@ -4,6 +4,8 @@ import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { handlerError, handlerSuccess } from "../../utils.js";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Enquiry() {
   const [showEmailotp, setEmailotp] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -31,7 +33,7 @@ function Enquiry() {
     }
     try {
       setLoading(true); // Start loader
-      const url = "http://localhost:3000/jepairbazaar/enquiry";
+      const url = `${API_URL}/enquiry`;
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -61,27 +63,36 @@ function Enquiry() {
     }
   };
   return (
-    <div>
+    <div className="py-7 dark:bg-[#343a46] ">
       <div>
         {showEmailotp && <Emailotp />}
-        <div className="w-full flex justify-center items-center bg-[#f2f2f2]">
-          <h1 className=" absolute text-center  text-5xl font-extrabold   animate-bounce md:top-96 md:left-[700px] top-40 shadow-blue-500  text-[#ff7f00]">
-          Enquiry
-        </h1>
+        <div className="w-full flex flex-col items-center py-7 dark:bg-[#343a46]  dark:text-white  justify-center bg-[#f2f2f2] relative px-4 ">
           
-          <img src="enquiry.png" className="h-[350px] w-auto rounded-lg shadow-xl shadow-blue-200 mb-10" />
+          <h1 className="text-center text-4xl sm:text-5xl font-extrabold animate-bounce text-[#ff7f00] mb-6 sm:mb-0 z-10">
+            Enquiry
+          </h1>
+
+         
+          <img
+            src="enquiry.png"
+            alt="Enquiry"
+            className="h-[250px] sm:h-[350px] w-auto rounded-lg shadow-xl shadow-blue-200"
+          />
         </div>
-        <div className="flex justify-center items-center  rounded-2xl mb-40 shadow-xl">
+
+        <div className="flex justify-center items-center dark:bg-[#343a46]  dark:text-white px-4 md:px-10 rounded-2xl mb-40 shadow-xl">
           <form
             onSubmit={enquiryFunction}
-            className="bg-[#f2f2f2] w-full h-full rounded-lg "
+            className=" w-full max-w-4xl rounded-lg dark:bg-gray-800 dark:text-white dark:py-6 dark:mt-10 dark:rounded-xl"
           >
-            <div className="mt-10 flex gap-x-3 justify-center items-center">
-              <h1 className="bg-[#3a76cb] py-6  px-24 lg:px-52 text-center rounded text-white font-bold text-xl">
+            <div className="mt-10 flex justify-center">
+              <h1 className="bg-[#3a76cb] py-4 px-6 sm:px-24 lg:px-52 text-center rounded text-white font-bold text-xl w-full max-w-3xl">
                 Post Your Requirements
               </h1>
             </div>
-            <div className="mt-6 flex gap-x-3 justify-center items-center">
+
+            
+            <div className="mt-6 flex flex-col sm:flex-row  gap-4 sm:gap-11 justify-center items-center px-4">
               <input
                 type="text"
                 placeholder="Enter your name"
@@ -89,7 +100,7 @@ function Enquiry() {
                 onChange={handleChange}
                 value={enquiryInfo.name}
                 autoFocus
-                className="py-2.5  px-2 lg:px-16 border border-blue-400 focus:outline-none rounded"
+                className="w-full sm:w-1/3 py-2.5 px-4  border dark:bg-gray-800 dark:text border-blue-400 focus:outline-none rounded"
                 required
               />
               <input
@@ -98,38 +109,43 @@ function Enquiry() {
                 name="phone"
                 onChange={handleChange}
                 value={enquiryInfo.phone}
-                className="py-2.5 px-2 lg:px-16 border border-blue-400 focus:outline-none rounded"
+                className="w-full sm:w-1/2 py-2.5 px-4 border dark:bg-gray-800 dark:text border-blue-400 focus:outline-none rounded"
                 required
               />
             </div>
-            <div className="flex justify-center items-center mt-3">
+
+            
+            <div className="flex justify-center items-center mt-4 px-4">
               <input
                 type="email"
                 placeholder="Enter your email"
-                required
                 name="email"
                 onChange={handleChange}
                 value={enquiryInfo.email}
-                className="py-2.5 px-28 lg:px-56 border border-blue-400 focus:outline-none rounded"
+                required
+                className="w-full max-w-3xl py-2.5 px-4 dark:bg-gray-800 dark:text border border-blue-400 focus:outline-none rounded"
               />
             </div>
-            <div className="flex justify-center items-center mt-4 ">
+
+            
+            <div className="flex justify-center items-center mt-4 px-4">
               <textarea
                 placeholder="Message"
-                rows={10}
-                cols={54}
-                className="border border-blue-400  lg:px-28 py-2.5"
+                rows={6}
+                className="w-full max-w-3xl py-2.5 px-4 border dark:bg-gray-800 dark:text border-blue-400 focus:outline-none rounded resize-none"
                 required
                 name="message"
                 onChange={handleChange}
                 value={enquiryInfo.message}
               ></textarea>
             </div>
-            <div className="flex justify-center items-center mt-4 mb-10">
+
+           
+            <div className="flex justify-center items-center mt-6 mb-10 px-4">
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-[#3a76cb] text-white py-3 px-44 lg:px-72 font-bold text-xl rounded hover:bg-orange-400 shadow-2xl"
+                className="w-full max-w-3xl bg-[#3a76cb] text-white py-3 font-bold text-xl rounded hover:bg-orange-400 transition-colors shadow-2xl"
               >
                 {loading ? (
                   <div className="flex justify-center items-center">

@@ -3,23 +3,26 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { handlerSuccess, handlerError } from "../../utils.js";
 import { ToastContainer } from "react-toastify";
+import { Link } from "react-router-dom";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Books() {
   const { user, loginWithRedirect, isAuthenticated } = useAuth0();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loadingOrderId, setLoadingOrderId] = useState(null);
 
   if (!isAuthenticated) {
     loginWithRedirect();
   }
-  console.log(orders);
 
   //  Fetch all orders for this user
   useEffect(() => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/jepairbazaar/order/user/${user?.email}`
+          `${API_URL}/order/user/${user?.email}`
         );
         setOrders(response.data.orders); //  backend should return orders array
       } catch (error) {
@@ -36,9 +39,10 @@ function Books() {
     if (!confirmed) return;
 
     try {
-      setLoading(true);
+      setLoading(true)
+      setLoadingOrderId(orderId);
       await axios.delete(
-        `http://localhost:3000/jepairbazaar/order/cancel/${orderId}`
+        `${API_URL}/order/cancel/${orderId}`
       );
       handlerSuccess("Order cancelled successfully!");
 
@@ -49,42 +53,44 @@ function Books() {
       handlerError("Failed to Cancel Order!");
       alert("Failed to cancel order.");
     } finally {
-      setLoading(false);
+      setLoadingOrderId(null);
+      setLoading(false)
     }
   };
 
   return (
     <>
-      <div className="w-full flex justify-center items-center">
-        <h1 className="absolute text-5xl text-[#3a76cb]   animate-pulse font-extrabold ">
-          Your Booking
-        </h1>
-        <img src="jepairBanner.jpg" className="h-[200px] w-full" />
+      <div className="w-full flex justify-center  py-7  dark:bg-[#343a46] dark:text-white items-center">
+        <img
+          src="book2.jpg"
+          className="h-[400px]  rounded-lg shadow-lg shadow-blue-400 w-auto"
+        />
       </div>
-      <div className="mt-20 mb-40">
+      <div className="mt-20 mb-40 dark:mb-0 dark:mt-0 dark:py-7 px-4 dark:bg-[#343a46] dark:text-white">
         <div className="flex flex-col items-center space-y-8">
           {orders.length === 0 ? (
-            <p className="text-gray-600 text-2xl ">
-              No orders found.
+            <div>
+              <p className="text-gray-600 text-2xl text-center">
+                No orders found.
+              </p>
               <br></br>
-              <pre className="font-semibold animate-pulse text-orange-500 ">  Book Now</pre>
-            </p>
+              <br></br>
+              <br></br>
+              <Link to="/bookprocess" className=" text-white bg-orange-500 py-2 px-4 rounded-lg">Book Now</Link>{" "}
+            </div>
           ) : (
             orders.map((order, index) => (
               <div
                 key={order._id}
-                className="md:w-[900px] w-full bg-[#f2f2f2] border-2 shadow rounded-xl"
+                className="w-full max-w-4xl bg-[#f2f2f2]  dark:bg-gray-800  dark:border-[#343a46] border-2 shadow rounded-xl"
               >
-                <div className="flex justify-between bg-gray-200 px-3 py-5 rounded-lg">
+                <div className="flex flex-col sm:flex-row flex-wrap justify-between gap-4  dark:bg-gray-800 bg-gray-200 px-4 py-5 rounded-t-lg">
                   <div>
                     <h3 className="font-bold">Book Placed</h3>
-
                     <span className="text-[#2162a1] font-semibold">
                       {new Date(order.createdAt).toLocaleDateString()}
-                      <span>
-                        <br></br>
-                        {new Date(order.createdAt).toLocaleTimeString()}
-                      </span>
+                      <br />
+                      {new Date(order.createdAt).toLocaleTimeString()}
                     </span>
                   </div>
                   <div>
@@ -94,11 +100,11 @@ function Books() {
                     </span>
                   </div>
                   <div>
-                    <h3 className="font-bold">Deliverd TO</h3>
+                    <h3 className="font-bold">Deliver TO</h3>
                     <span className="text-[#2162a1] font-semibold">
                       {order.date}
                     </span>
-                    <br></br>
+                    <br />
                     <span className="text-[#2162a1] font-semibold">
                       {order.time}
                     </span>
@@ -111,7 +117,7 @@ function Books() {
                   </div>
                 </div>
 
-                <div className="flex justify-between items-center py-4 px-4">
+                <div className="flex flex-col sm:flex-row flex-wrap justify-between items-start gap-6 py-4 px-4">
                   <div>
                     <h3 className="font-bold text-[#349380] text-lg">
                       Service
@@ -121,58 +127,58 @@ function Books() {
                     </span>
                   </div>
 
-                  <div className="lg:ml-0 ml-12">
+                  <div>
                     <h3 className="font-bold text-[#349380] text-lg">
                       Address
                     </h3>
-                    <span className="text-[#2162a1] font-semibold">
+                    <span className="text-[#2162a1] font-semibold block">
                       {order.location.area}, {order.location.town}
                     </span>
-                    <br />
-                    <span className="text-[#2162a1] font-semibold">
+                    <span className="text-[#2162a1] font-semibold block">
                       {order.location.pincode}
                     </span>
                   </div>
+
                   <div>
                     <h3 className="font-bold text-[#349380] text-lg">Status</h3>
                     <span
                       className={`font-bold ${
-                        order.status == "Booked"
-                          ? " text-blue-500"
+                        order.status === "Booked"
+                          ? "text-blue-500"
                           : order.status === "Pending"
-                          ? "text-yellow-500 animate-pulse "
+                          ? "text-yellow-500 animate-pulse"
                           : order.status === "Completed"
-                          ? "text-green-500 "
+                          ? "text-green-500"
                           : "text-red-500"
                       }`}
                     >
                       {order.status}
                     </span>
                   </div>
-                  <div className="flex justify-center items-center">
-                    <div className="lg:ml-0 ml-8 md:space-x-2 ">
-                      <button
-                        onClick={() => orderCancel(order._id)}
-                        className="mt-4 font-bold bg-[#2162a1] hover:-translate-y-1 transition-all text-white hover:bg-orange-500 px-4  py-1.5 rounded-lg"
-                      >
-                        {loading ? (
-                          <div className="flex justify-center items-center">
-                            <div className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-white"></div>
-                          </div>
-                        ) : (
-                          "Cancel Book"
-                        )}
-                      </button>
-                      <button className="mt-4 font-bold px-4 bg-[#2162a1]  hover:translate-y-1 transition-all text-white  hover:bg-orange-500 rounded-xl py-1.5">
-                        {loading ? (
-                          <div className="flex justify-center items-center">
-                            <div className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-white"></div>
-                          </div>
-                        ) : (
-                          "Update Book"
-                        )}
-                      </button>
-                    </div>
+
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <button
+                      onClick={() => orderCancel(order._id)}
+                      className="font-bold bg-[#2162a1] hover:-translate-y-1 transition-all text-white hover:bg-orange-500 px-4 py-2 rounded-lg"
+                    >
+                      {loadingOrderId === order._id ? (
+                        <div className="flex justify-center items-center">
+                          <div className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-white"></div>
+                        </div>
+                      ) : (
+                        "Cancel Book"
+                      )}
+                    </button>
+
+                    <button className="font-bold px-4 bg-[#2162a1] hover:translate-y-1 transition-all text-white hover:bg-orange-500 rounded-lg py-2">
+                      {loading ? (
+                        <div className="flex justify-center items-center">
+                          <div className="w-6 h-6 border-4 border-dashed rounded-full animate-spin border-white"></div>
+                        </div>
+                      ) : (
+                        "Update Book"
+                      )}
+                    </button>
                   </div>
                 </div>
               </div>

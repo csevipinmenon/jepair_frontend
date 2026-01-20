@@ -2,18 +2,16 @@ import React from "react";
 
 function TermCondition() {
   return (
-    <div>
+    <div className="py-7 dark:bg-[#343a46] dark:text-white">
       <div className="w-full flex justify-center items-center">
-        <h1 className="absolute text-4xl text-[#3a76cb]  font-bold ">
-          Term & Condition
-        </h1>
-        <img src="jepairBanner.jpg" className="h-[200px] w-full" />
+        
+        <img src="termcondition.jpg" className="h-[350px] w-auto rounded-lg shadow-lg shadow-blue-400" />
       </div>
 
       <div className="mt-4 md:px-48 px-8 mb-10 ">
         <div>
-          <h3 className="font-bold text-xl text-gray-800">Website Terms:</h3>
-          <p className="mt-3  text-gray-700 leading-relaxed text-lg">
+          <h3 className="font-bold text-xl text-gray-800 dark:text-white">Website Terms:</h3>
+          <p className="mt-3  text-gray-700  dark:text-white leading-relaxed text-lg">
             These Terms And Conditions contained on our website
             (www.jepairbaazar.com), will govern your use of this website,
             including all pages inside this website. These Terms and Conditions
@@ -23,10 +21,10 @@ function TermCondition() {
           </p>
         </div>
         <div className="mt-5">
-          <h3 className="font-bold text-xl text-gray-800">
+          <h3 className="font-bold text-xl text-gray-800 dark:text-white">
             Service Term and Conditions:
           </h3>
-          <p className="mt-3  text-gray-700 leading-relaxed text-lg">
+          <p className="mt-3  text-gray-700 leading-relaxed text-lg dark:text-white">
             Jepair bazaar will endeavor the fix only for the issue confirmed by
             the user/customer. However, in situations where additional repair
             services/parts are needed to fix the issue, Jepair baazar would take
@@ -35,7 +33,7 @@ function TermCondition() {
             additional estimate, the request will be required to be postponed
             till we get a response.
           </p>
-          <p className="mt-3  text-gray-700 leading-relaxed text-lg">
+          <p className="mt-3  text-gray-700 leading-relaxed text-lg dark:text-white">
             Turnaround time for all the appliances repairs is between 4 to 5
             working days. It might take longer due to delay owing to customer
             approval, non-accessibility of spares and non-availability of other
@@ -43,7 +41,7 @@ function TermCondition() {
             required. Pickup and Delivery time won't be included for the
             previously mentioned repair period.
           </p>
-          <p className="mt-3  text-gray-700 leading-relaxed text-lg">
+          <p className="mt-3  text-gray-700 leading-relaxed text-lg dark:text-white">
             Jepair baazar will endeavor delivery of the repaired device twice at
             that time and location concurred by the customer. If customer isn't
             available to take the delivery at the multiple times, Jepair baazar
@@ -55,22 +53,22 @@ function TermCondition() {
           </p>
         </div>
         <div className="mt-5">
-          <h3 className="font-bold text-xl text-gray-800 ">
+          <h3 className="font-bold text-xl text-gray-800 dark:text-white">
             Our payment Terms:
           </h3>
-          <p className="mt-3  text-gray-700 leading-relaxed text-lg">
+          <p className="mt-3  text-gray-700 leading-relaxed text-lg dark:text-white">
             GST of 18% is applicable on all deliverables.
           </p>
-          <p className="mt-3  text-gray-700 leading-relaxed text-lg">
+          <p className="mt-3  text-gray-700 leading-relaxed text-lg dark:text-white">
             For deliveries being done by Jepair baazar logistic team, payment
             would be due upon the receipt of the deliverable device.
           </p>
-          <p className="mt-3  text-gray-700 leading-relaxed text-lg">
+          <p className="mt-3  text-gray-700 leading-relaxed text-lg dark:text-white">
             For deliveries being done by Jepair baazar expert team, payment is
             due upon receipt of generated invoice by the customer by means of
             email.
           </p>
-          <p className="mt-3  text-gray-700 leading-relaxed text-lg">
+          <p className="mt-3  text-gray-700 leading-relaxed text-lg dark:text-white">
             In case of non-payment of , Jepair baazar will sit tight for 7 days
             from the preparation of receipt to the customer. Post 10 days,
             Jepair baazar has the privilege to hold the customer's deliverable
@@ -78,8 +76,8 @@ function TermCondition() {
           </p>
         </div>
         <div className="mt-5">
-          <h3 className="font-bold text-xl text-gray-800">General Terms:</h3>
-          <p className="mt-3  text-gray-700 leading-relaxed text-lg">
+          <h3 className="font-bold text-xl text-gray-800 dark:text-white">General Terms:</h3>
+          <p className="mt-3  text-gray-700 leading-relaxed text-lg dark:text-white">
             In no event will jepairbaazar Pvt Ltd, nor any of its heads,
             directors and workers, be obligated to you for anything emerging out
             of or in any way connected with your use of your device, whether
@@ -88,19 +86,19 @@ function TermCondition() {
             representatives will not be subject for any indirect, considerable
             or risk emerging out of or in any circumstances beyond our control.
           </p>
-          <p className="mt-3  text-gray-700 leading-relaxed text-lg">
+          <p className="mt-3  text-gray-700 leading-relaxed text-lg dark:text-white">
             If any arrangement of these Terms is discovered to be unenforceable
             or invalid under any appropriate law, such unenforceability or
             weakness will not ruin these Terms unenforceable or in general, and
             such arrangements will be deleted without influencing the rest of
             the provisions herein.
           </p>
-          <p className="mt-3  text-gray-700 leading-relaxed text-lg">
+          <p className="mt-3  text-gray-700 leading-relaxed text-lg dark:text-white">
             In Case of any help, grievance, feedback or to know the status of
             your repair please keep in touch with us on info@jepairbaazar.com or
             Call us at 8102303285.
           </p>
-          <p className="mt-3  text-gray-700 leading-relaxed text-lg">
+          <p className="mt-3  text-gray-700 leading-relaxed text-lg dark:text-white">
             We are available from 10 AM till 6 PM, Sundays and Public Holidays
             Closed.
           </p>

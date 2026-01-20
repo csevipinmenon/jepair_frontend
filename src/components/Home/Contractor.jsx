@@ -14,7 +14,7 @@ function Contractor() {
     }
   };
   return (
-    <div className="text-center  p-10  ">
+    <div className="text-center dark:bg-[#343a46]  p-10  ">
       <h1 className="font-bold text-4xl text-[#3a76cb] ">
         Contractor Services
       </h1>

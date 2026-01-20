@@ -13,7 +13,6 @@ import Appliance from "./Appliance";
 import Worlwide from "./Worlwide";
 import Lastdecscription from "./Lastdecscription";
 import Ads from "./Ads";
-import Sidenav from "../sidenav/Sidenav";
 import ChatPopup from "../chatboat/ChatPopup";
 import JepairBot from "../chatboat/JepairBot";
 
@@ -24,16 +23,17 @@ function Home() {
     setShowBot((prev) => !prev);
   };
   return (
-    <div className="">
+    <div className="dark:bg-[#343a46] ">
+      
       <TypingEffect />
       <Login />
       <SearchHome />
 
-      <div className="relative w-full lg:h-[450px] h-[700px] ">
+      <div className="relative  w-full lg:h-[450px]  dh-[700px]  ">
         <img
           src="jepairHome.jpg"
           alt="Image"
-          className="w-full h-full object-cover "
+          className="w-full h-full  dark:bg-[#343a46] object-cover "
         />
         <div className="absolute inset-0 bg-black/60"></div>
       </div>

@@ -13,71 +13,40 @@ function TrendingService() {
     }
   };
   return (
-    <div className="text-center mt-16 mb-32">
-      <div>
-        <h3 className="font-bold text-4xl text-[#3a76cb] ">
-          Trending Services
-        </h3>
-        <div className="grid lg:grid-cols-4 grid-cols-2 gap-x-2 lg:gap-x-4  gap-y-24 mt-16 ml-12 lg:ml-20  items-center mb-16">
-          <div className="w-40 h-40 bg-[#ffffff]  rounded-full shadow-2xl hover:shadow-blue-400  shadow-gray-600 ">
-            <Link onClick={bookProcessFunction}>
-              <img src="ac-repair.png" className="rounded-full mb-4" />
-              <span className="font-semibold ">Ac Repair</span>
-            </Link>
-          </div>
-          <div className="w-40 h-40 bg-[#ffffff]  rounded-full shadow-2xl hover:shadow-blue-400  shadow-gray-600 ">
-            <Link onClick={bookProcessFunction}>
-              <img src="sofa.png" className="rounded-full mb-4" />
-              <span className="font-semibold ">Sofa Repair</span>
-            </Link>
-          </div>
-          <div className="w-40 h-40 bg-[#ffffff]  rounded-full shadow-2xl hover:shadow-blue-400  shadow-gray-600 ">
-            <Link onClick={bookProcessFunction}>
-              <img src="plumber.png" className="rounded-full mb-4" />
-              <span className="font-semibold ">Plumber Repair</span>
-            </Link>
-          </div>
-          <div className="inline-flex justify-center items-center w-40 h-40 bg-[#ffffff]  rounded-full shadow-2xl hover:shadow-blue-400  shadow-gray-600 ">
-            <Link onClick={bookProcessFunction}>
+    <div className="text-center dark:bg-[#343a46]  mb-32 dark:mb-0 py-5">
+      <h3 className="font-bold text-4xl text-[#3a76cb]">Trending Services</h3>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-16 mt-16 px-4 sm:px-10 lg:px-20">
+      
+        {[
+          { img: "ac-repair.png", label: "Ac Repair" },
+          { img: "sofa.png", label: "Sofa Repair" },
+          { img: "plumber.png", label: "Plumber " },
+          { img: "maid services.jpg", label: "Maid" },
+          { img: "packers-movers.png", label: "Packers" },
+          { img: "fridge.png", label: "Refrigerator" },
+          { img: "house-cleaning.png", label: "Cleaning" },
+          { img: "female-massage.jpg", label: "Massage" },
+        ].map((service, idx) => (
+          <div
+            key={idx}
+            className="bg-white  w-40 h-40 mx-auto rounded-full shadow-2xl hover:shadow-blue-400 flex flex-col justify-center items-center overflow-hidden"
+          >
+            <Link
+              onClick={bookProcessFunction}
+              className="flex flex-col items-center"
+            >
               <img
-                src="maid services.jpg"
-                className="rounded-full h-[160px] w-[160px] "
+                src={service.img}
+                alt={service.label}
+                className="rounded-full h-[100px] w-[100px]  object-cover"
               />
-              <span className="font-semibold mt-4 hidden lg:flex absolute right-60 ">
-                Maid
+              <span className="font-semibold text-sm mt-2   text-center">
+                {service.label}
               </span>
             </Link>
           </div>
-          <div className="w-40 h-40 bg-[#ffffff]  rounded-full shadow-2xl hover:shadow-blue-400  shadow-gray-600 ">
-            <Link onClick={bookProcessFunction}>
-              <img src="packers-movers.png" className="rounded-full mb-4" />
-              <span className="  font-semibold ">Packers and Movers</span>
-            </Link>
-          </div>
-          <div className="w-40 h-40 bg-[#ffffff]  rounded-full shadow-2xl hover:shadow-blue-400  shadow-gray-600 ">
-            <Link onClick={bookProcessFunction}>
-              <img src="fridge.png" className="rounded-full mb-4" />
-              <span className="font-semibold ">Refrigerator Repair</span>
-            </Link>
-          </div>
-          <div className="w-40 h-40 bg-[#ffffff]  rounded-full shadow-2xl hover:shadow-blue-400  shadow-gray-600 ">
-            <Link onClick={bookProcessFunction}>
-              <img src="house-cleaning.png" className="rounded-full mb-4" />
-              <span className="font-semibold  ">House Cleaning</span>
-            </Link>
-          </div>
-          <div className="  inline-flex justify-center items-center w-40 h-40 text-center bg-[#ffffff]  rounded-full shadow-2xl hover:shadow-blue-400  shadow-gray-600 ">
-            <Link onClick={bookProcessFunction}>
-              <img
-                src="female-massage.jpg"
-                className="rounded-full h-[160px] w-[200px] "
-              />
-              <span className="font-semibold hidden lg:flex mt-4 absolute right-60 ">
-                Massage
-              </span>
-            </Link>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

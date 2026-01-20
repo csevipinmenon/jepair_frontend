@@ -4,6 +4,8 @@ import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { handlerError, handlerSuccess } from "../../utils.js";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Feedback() {
   const [feedbackInfo, setFeedbackInfo] = useState({
     name: "",
@@ -32,7 +34,7 @@ function Feedback() {
     }
     try {
       setLoading(true); // Start loader
-      const url = "http://localhost:3000/jepairbazaar/feedback";
+      const url = `${API_URL}/feedback`;
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -42,7 +44,7 @@ function Feedback() {
       });
 
       const result = await response.json();
-      console.log(result);
+      
       const { success, message, error } = result;
       if (success) {
         handlerSuccess(message || "feedback submitted succesfully");
@@ -62,17 +64,17 @@ function Feedback() {
     }
   };
   return (
-    <div className="dark:text-[#f2f2f2]">
+    <div className="dark:text-[#f2f2f2] py-7 dark:bg-[#343a46]">
       <div className="flex justify-center items-center bg-[#f2f2f2] dark:bg-[#343a46]">
         <h1 className=" absolute text-center  text-5xl font-extrabold   animate-bounce md:top-64 top-40 shadow-blue-500  text-[#ff7f00]">
           FeedBack
         </h1>
         <img src="hero-feed.jpg" className="md:h-[350px] w-auto h-[200px]  rounded-xl shadow-2xl shadow-blue-400" />
       </div>
-      {/* feedback section */}
+    
 
       <div className="flex justify-center items-center   bg-[#f2f2f2] dark:bg-[#343a46]">
-        <div className="inline bg-white  dark:bg-gray-800 mt-20 py-14  px-10 lg:px-48 shadow-2xl rounded-3xl mb-32 lg:mr-0 lg:ml-0 ml-8 mr-8">
+        <div className="inline bg-white  dark:bg-gray-800 mt-20 py-14  px-2 md:px-48 shadow-2xl rounded-3xl mb-32 lg:mr-0 lg:ml-0 ml-8 mr-8">
           <form onSubmit={feedbackFunction}>
             <h3 className="font-bold text-4xl">Contact Us</h3>
             <p className="mt-2  text-sm font-sans">

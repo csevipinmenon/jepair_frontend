@@ -9,7 +9,7 @@ function JepairBot() {
   const [chatLog, setChatLog] = useState([]);
   const chatContainerRef = useRef(null);
 
-  //handlersCustomReply
+  
   function updateBotReply(replyText, delay = 1500) {
     setTimeout(() => {
       setChatLog((prev) => {
@@ -42,124 +42,124 @@ function JepairBot() {
     let botReply = "";
 
     try {
-      // Custom simple logic
+      
       if (
-        question.includes("price") ||
-        question.includes("pricing") ||
-        question.includes("prices")
+        question.toLowerCase().includes("price") ||
+        question.toLowerCase().includes("pricing") ||
+        question.toLowerCase().includes("prices")
       ) {
         updateBotReply("Pricing depends on service and location.");
         return;
-      } else if (question.includes(" what is jepair")) {
+      } else if (question.toLowerCase().includes(" what is jepair")) {
         updateBotReply(
           "Jepair Bazaar is India's Largest Home Service Provider!❤️"
         );
         return;
-      } else if (question.includes("who are you")) {
+      } else if (question.toLowerCase().includes("who are you")) {
         updateBotReply(
           "I'm Jepair Bazaar AI Chat Assistant! How can I help you?"
         );
         return;
-      } else if (question.includes("order") || question.includes("book")) {
+      } else if (question.toLowerCase().includes("order") || question.toLowerCase().includes("book")) {
         updateBotReply(
           "After Login, press Book button and fill the form manually to confirm order.👌"
         );
         return;
-      } else if (question.includes("company name")) {
+      } else if (question.toLowerCase().includes("company name")) {
         updateBotReply(
           "Jepair Bazaar - India's Largest Home services Provider!"
         );
         return;
-      } else if (question.includes("contact")) {
+      } else if (question.toLowerCase().includes("contact")) {
         updateBotReply(
           "Go to Enquiry Section. After submitting the form, we will contact you as soon as possible!"
         );
         return;
-      } else if (question.includes("what is jepair bazaar")) {
+      } else if (question.toLowerCase().includes("what is jepair bazaar")) {
         updateBotReply(
           "Jepair Bazaar is India/s Largest Home Services Provider!"
         );
         return;
-      } else if (question.includes("thank") || question.includes("thanks")) {
+      } else if (question.toLowerCase().includes("thank") || question.toLowerCase().includes("thanks")) {
         updateBotReply("Welcome . Feel free to chat with me!😊");
         return;
       } else if (
-        question.includes("ceo of jepair ") ||
-        question.includes("founder of jepair")
+        question.toLowerCase().includes("ceo of jepair ") ||
+        question.toLowerCase().includes("founder of jepair")
       ) {
         updateBotReply(
           "The CEO of Jepair Bazaar  are Mr.Vipin , Mr.Saurabh and Mr.Vishal.To know more about the Jepair Bazaar vist the about section of website"
         );
         return;
       } else if (
-        question.includes("list of services") ||
-        question.includes("list of service") ||
-        question.includes("service") ||
-        question.includes("services")
+        question.toLowerCase().includes("list of services") ||
+        question.toLowerCase().includes("list of service") ||
+        question.toLowerCase().includes("service") ||
+        question.toLowerCase().includes("services")
       ) {
         updateBotReply(
-          "List of services are 📃 plumbling🪠,electrician🔌,cleaning🧹 ,Ac repair,Beauty spa💇 and many more . For more service visit select bar"
+          "List of services are plumbling,electrician,cleaning ,Ac repair,Beauty spa and many more . For more service visit select bar"
         );
         return;
       } else if (
-        question.includes("can you save data") ||
-        question.includes("store data") ||
-        question.includes("save data") ||
-        question.includes("store conversion")
+        question.toLowerCase().includes("can you save data") ||
+        question.toLowerCase().includes("store data") ||
+        question.toLowerCase().includes("save data") ||
+        question.toLowerCase().includes("store conversion")
       ) {
         updateBotReply(
           "No.I don't save any type of your data!.I'm run time JB's Assistant"
         );
         return;
       } else if (
-        question.includes("can you provide ac ") ||
-        question.includes("can you provide plumber ") ||
-        question.includes("can you provide electrician ") ||
-        question.includes("can you provide beauty ") ||
-        question.includes("can you provide cleaning ") ||
-        question.includes("can you provide ")
+        question.toLowerCase().includes("can you provide ac ") ||
+        question.toLowerCase().includes("can you provide plumber ") ||
+        question.toLowerCase().includes("can you provide electrician ") ||
+        question.toLowerCase().includes("can you provide beauty ") ||
+        question.toLowerCase().includes("can you provide cleaning ") ||
+        question.toLowerCase().includes("can you provide ")
       ) {
         updateBotReply("Yes!.For more service visit select bar!");
         return;
       } else if (
-        question.includes("can i pay online") ||
-        question.includes("can i pay offline ") ||
-        question.includes("payment mode ")
+        question.toLowerCase().includes("can i pay online") ||
+        question.toLowerCase().includes("can i pay offline ") ||
+        question.toLowerCase().includes("payment mode ")
       ) {
         updateBotReply("Yes!.You can Pay both online or offline mode");
         return;
       } else if (
-        question.includes("how can i pay online ") ||
-        question.includes("how pay online")
+        question.toLowerCase().includes("how can i pay online ") ||
+        question.toLowerCase().includes("how pay online")
       ) {
         updateBotReply(
           "Go to Pay Now section at footer and click button and pay!"
         );
         return;
       } else if (
-        question.includes("how can i pay offline ") ||
-        question.includes("how pay offline")
+        question.toLowerCase().includes("how can i pay offline ") ||
+        question.toLowerCase().includes("how pay offline")
       ) {
         updateBotReply("Pay Our Service Man!");
         return;
-      } else if (question.includes("refund")) {
+      } else if (question.toLowerCase().includes("refund")) {
         updateBotReply("Refund not possible!");
         return;
       } else if (
-        question.includes("cancel order ") ||
-        question.includes("cancel book")
+        question.toLowerCase().includes("cancel order ") ||
+        question.toLowerCase().includes("cancel book")
       ) {
         updateBotReply("Yes you  can cancel!");
         return;
-      } else if (question.includes("timing")) {
+      } else if (question.toLowerCase().includes("timing")) {
         updateBotReply(
           "Any time you can Book the services or contact the Jepair Bazaar"
         );
         return;
-      } else if (question.includes("gender")) {
+      } else if (question.toLowerCase().includes("gender")) {
         updateBotReply("I'm Jepair Bazaar AI ChatBot Assistance !");
         return;
-      } else if (question.includes("age")) {
+      } else if (question.toLowerCase().includes("age")) {
         updateBotReply("I'm Jepair Bazaar AI ChatBot Assistance! ");
         return;
       } else {
@@ -176,7 +176,7 @@ function JepairBot() {
       botReply = "Sorry, something went wrong!";
     }
 
-    // Replace last "Thinking..." with actual response
+    
     setChatLog((prev) => {
       const newLog = [...prev];
       newLog[newLog.length - 1] = { from: "bot", text: botReply };
@@ -185,21 +185,17 @@ function JepairBot() {
   }
 
   return (
-    <div className="fixed right-4 top-16 shadow-2xl z-50 w-[430px] h-[510px]">
-      <div className="w-full h-full rounded-2xl bg-orange-100 shadow-2xl">
-        {/* Header */}
-        <div className="flex justify-between bg-blue-900 rounded-t-2xl text-white font-semibold p-3">
+    <div className="fixed sm:right-4 sm:top-16 top-20 left-0 sm:bottom-auto sm:left-auto z-50 w-full sm:w-[430px] max-w-full sm:max-w-[430px] h-[510px] sm:h-[510px] max-h-[90vh] shadow-2xl">
+      <div className="w-full h-full rounded-none sm:rounded-2xl bg-orange-100 shadow-2xl flex flex-col">
+        
+        <div className="flex justify-between bg-blue-900 rounded-none sm:rounded-t-2xl text-white font-semibold p-3">
           <h3>Jepair Bazaar Assistance</h3>
           <button>
             <TfiMenuAlt className="text-xl" />
           </button>
         </div>
 
-        {/* Chat Messages */}
-        <div
-          className="bg-orange-100 w-full h-[88%] overflow-y-auto p-4"
-          ref={chatContainerRef}
-        >
+        <div className="flex-1 overflow-y-auto p-4" ref={chatContainerRef}>
           {chatLog.map((msg, idx) => (
             <div
               key={idx}
@@ -227,14 +223,14 @@ function JepairBot() {
           ))}
         </div>
 
-        {/* Input Area */}
-        <div className="flex p-3 border-t shadow-2xl border-gray-300 items-center bg-white rounded-b-2xl">
+        
+        <div className="flex p-3 border-t shadow-2xl border-gray-300 items-center bg-white rounded-none sm:rounded-b-2xl">
           <input
             type="text"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             placeholder="Write a message..."
-            className="w-full py-2 px-4 rounded-full border border-blue-500  focus:border-orange-500 focus:outline-none"
+            className="w-full py-2 px-4 rounded-full border border-blue-500 focus:border-orange-500 focus:outline-none"
             onKeyDown={(e) => e.key === "Enter" && generateAnswer()}
           />
           <button

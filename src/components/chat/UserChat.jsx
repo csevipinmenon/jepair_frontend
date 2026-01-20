@@ -3,14 +3,20 @@ import { useAuth0 } from "@auth0/auth0-react";
 import io from "socket.io-client";
 import { useRef } from "react";
 
-const socket = io("http://localhost:3000"); // Connect to backend
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
+
+const socket = io(SOCKET_URL); // Connect to backend
 
 function UserChat() {
-  const { user } = useAuth0(); // get logged-in user's email
+  const { user, loginWithRedirect, isAuthenticated } = useAuth0(); // get logged-in user's email
   const [message, setMessage] = useState("");
   const [chatLog, setChatLog] = useState([]);
 
   const chatRef = useRef(null);
+
+  if (!isAuthenticated) {
+    loginWithRedirect();
+  }
 
   useEffect(() => {
     if (chatRef.current) {
@@ -35,7 +41,7 @@ function UserChat() {
   const handleSend = () => {
     if (!message) return;
 
-    //  You place this here — when user clicks "Send"
+   
     socket.emit("sendMessage", {
       to: "jepair@admin.com",
       from: user.email,
@@ -48,27 +54,26 @@ function UserChat() {
 
   return (
     <>
-      <div className="w-full flex justify-center items-center shadow-lg">
-        <h1 className="absolute text-3xl text-[#3a76cb]   font-extrabold ">
-          Welcome To Chat!
-        </h1>
-        <img src="jepairBanner.jpg" className="h-[200px] w-full" />
+      <div className="w-full flex justify-center  dark:bg-[#343a46] dark:text-white py-7  items-center ">
+        
+        <img src="chat.jpg" className="h-[350px] rounded-lg shadow-lg shadow-blue-400 w-auto" />
       </div>
-      <div className="p-4 ">
+
+      <div className="p-4  dark:bg-[#343a46] dark:text-white">
         <h2 className="text-3xl shadow-lg border-b-2 border-dashed py-4    text-blue-500 border-orange-500 font-extrabold mb-2 text-center">
           <span className="  rounded-md">
             {" "}
-            Jepair <span className="text-orange-500  bg-white">Bazaar </span>
+            Jepair <span className="text-orange-500  bg-white dark:bg-[#343a46]">Bazaar </span>
           </span>
-          <span class="relative flex h-5 w-5  left-1/2 bottom-14">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-5 w-5 bg-sky-500"></span>
+          <span className="relative flex h-5 w-5  left-1/2 bottom-14">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-5 w-5 bg-sky-500"></span>
           </span>
         </h2>
 
         <div
           ref={chatRef}
-          className="h-80 shadow-lg overflow-y-auto border mt-8 rounded-md bg-[#f2f2f2] p-2 mb-3"
+          className="h-80 shadow-lg overflow-y-auto border mt-8  dark:border-[#343a46] rounded-md dark:bg-gray-800 dark:text-white bg-[#f2f2f2] p-2 mb-3"
         >
           {chatLog.map((msg, idx) => (
             <div
@@ -98,7 +103,7 @@ function UserChat() {
         <div className="flex gap-2 mb-36 mt-12">
           <input
             type="text"
-            className="border p-2 w-full focus:outline-none  border-blue-500  rounded-lg focus:border-orange-500"
+            className="border p-2 w-full focus:outline-none  dark:bg-gray-800 dark:text-white border-blue-500  rounded-lg focus:border-orange-500"
             placeholder="Type your message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}

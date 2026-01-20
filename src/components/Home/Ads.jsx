@@ -10,7 +10,7 @@ function Ads() {
   if (!showAd) return null;
 
   return (
-    <div className=" sm:flex justify-around items-center sm:px-7 sm:py-10 py-10 px-20  shadow">
+    <div className=" dark:bg-[#343a46]   sm:flex justify-around items-center  sm:px-7 sm:py-10 py-10 px-8   shadow">
       <div>
         <div
           style={{

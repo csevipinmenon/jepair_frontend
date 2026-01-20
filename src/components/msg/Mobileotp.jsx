@@ -4,6 +4,9 @@ import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+
 function Mobileotp({ formData, setMobileotp }) {
   const { user } = useAuth0();
   const [showAd, setShowAd] = useState(true);
@@ -35,7 +38,7 @@ function Mobileotp({ formData, setMobileotp }) {
     }
     try {
       setLoading(true);
-      const url = "http://localhost:3000/jepairbazaar/mobileotp/verify";
+      const url = `${API_URL}/mobileotp/verify`;
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -57,15 +60,19 @@ function Mobileotp({ formData, setMobileotp }) {
       );
       const result = await response.json();
       const { success, message, error } = result;
-      console.log(result);
 
       if (success) {
         alert(
           "Your Service is Book! Check  Your email or vist Book section of User.Thank You "
         );
+        speechSynthesis.speak(
+          new SpeechSynthesisUtterance(
+            "Your Service is Book! Check  Your email or vist Book section of User.Thank You"
+          )
+        );
 
         try {
-          const url = "http://localhost:3000/jepairbazaar/order/book";
+          const url = `${API_URL}/order/book`;
           const response = await fetch(url, {
             method: "POST",
             headers: {
@@ -87,9 +94,6 @@ function Mobileotp({ formData, setMobileotp }) {
           });
 
           const result = await response.json();
-          console.log(result);
-
-          
 
           setTimeout(() => {
             navigate("/yourbook");

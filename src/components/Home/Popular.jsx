@@ -14,7 +14,7 @@ function Popular() {
     }
   };
   return (
-    <div className="text-center bg-[#f2f2f2] p-10 ">
+    <div className="text-center dark:bg-[#343a46]  bg-[#f2f2f2] p-10 ">
       <h1 className="font-bold text-4xl text-[#3a76cb] ">Popular Services</h1>
       <div className="flex flex-wrap m-16 gap-8 justify-between  items-center">
         <div className="w-[200px] h-[300px] bg-white rounded-xl shadow-xl hover:shadow-blue-300">

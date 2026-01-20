@@ -14,7 +14,6 @@ function Header() {
   //save user data
 
   //save user data
-  console.log(user);
 
   const [showSidenav, setShowSidenav] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,8 +32,8 @@ function Header() {
   };
 
   return (
-    <header className="shadow-lg z-50  sticky top-0 lg:m-4 dark:m-0">
-      <nav className="bg-white border-gray-300 px-4 lg:px-6 py-2.5 dark:bg-[#343a46] dark:text-white">
+    <header className="shadow-lg z-50  sticky top-0   dark:bg-[#343a46]">
+      <nav className="bg-white border-gray-300 px-4 lg:px-6 py-2.5  dark:bg-[#343a46] dark:text-white">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <Link
             to="/"
@@ -48,7 +47,6 @@ function Header() {
               alt="Jepair Bazaar Logo"
               className="block dark:hidden mr-3 md:h-20 h-16 "
             />
-            {/* dark mode baad image */}
             <img
               src="jepairblacklogo.jpg"
               alt="Jepair Bazaar Logo"
@@ -99,8 +97,8 @@ function Header() {
                   }}
                   className={({ isActive }) =>
                     `font-bold ${
-                      isActive ? "text-orange-400" : "text-black"
-                    } hover:bg-[#3a76cb] hover:p-2 hover:rounded-md hover:text-white dark:text-white`
+                      isActive ? "text-orange-400" : "text-blue-500"
+                    }  `
                   }
                 >
                   Home
@@ -114,8 +112,8 @@ function Header() {
                   }}
                   className={({ isActive }) =>
                     `font-bold ${
-                      isActive ? "text-orange-400" : "text-black"
-                    } hover:bg-[#3a76cb] hover:p-2 hover:rounded-md hover:text-white dark:text-white`
+                      isActive ? "text-orange-400" : "text-blue-500"
+                    } `
                   }
                 >
                   Visit
@@ -129,8 +127,8 @@ function Header() {
                   }}
                   className={({ isActive }) =>
                     `font-bold ${
-                      isActive ? "text-orange-400" : "text-black"
-                    } hover:bg-[#3a76cb] hover:p-2 dark:text-white hover:rounded-md hover:text-white`
+                      isActive ? "text-orange-400" : "text-blue-500"
+                    }`
                   }
                 >
                   About
@@ -144,8 +142,8 @@ function Header() {
                   }}
                   className={({ isActive }) =>
                     `font-bold ${
-                      isActive ? "text-orange-400" : "text-black"
-                    } hover:bg-[#3a76cb] hover:p-2 dark:text-white hover:rounded-md hover:text-white`
+                      isActive ? "text-orange-400" : "text-blue-500"
+                    }`
                   }
                 >
                   Enquiry
@@ -159,8 +157,8 @@ function Header() {
                   }}
                   className={({ isActive }) =>
                     `font-bold ${
-                      isActive ? "text-orange-400" : "text-black"
-                    } hover:bg-[#3a76cb] hover:p-2 dark:text-white hover:rounded-md hover:text-white`
+                      isActive ? "text-orange-400" : "text-blue-500"
+                    } `
                   }
                 >
                   FeedBack
@@ -173,11 +171,11 @@ function Header() {
           </button>
         </div>
         <div
-          className=" hidden  w-full items-center lg:hidden bg-[#f2f2f2]  "
+          className=" hidden  w-full items-center lg:hidden  text-center  dark:bg-[#343a46] "
           id="mobile-menu"
         >
           <ul className=" flex flex-col mt-6 font-medium gap-6 p-4">
-            <li className="hover:bg-[#3a76cb] p-2 dark:text-white hover:rounded-md bg-orange-400 rounded-md">
+            <li className=" p-2 dark:text-white hover:rounded-md  rounded-md">
               <NavLink
                 to={"/"}
                 onClick={() => {
@@ -186,14 +184,15 @@ function Header() {
                 }}
                 className={({ isActive }) =>
                   `font-bold ${
-                    isActive ? "text-orange-400" : "text-black"
-                  }  text-white font-bold`
+                    isActive ? "text-orange-400" : "text-blue-500"
+                  }  `
                 }
               >
                 Home
               </NavLink>
             </li>
-            <li className="hover:bg-[#3a76cb] p-2 dark:text-white hover:rounded-md bg-orange-400 rounded-md">
+            {/* <!-- additional mobile nav items... --> */}
+  <li className=" p-2 dark:text-white hover:rounded-md  rounded-md">
               <NavLink
                 to={"/visit"}
                 onClick={() => {
@@ -202,14 +201,14 @@ function Header() {
                 }}
                 className={({ isActive }) =>
                   `font-bold ${
-                    isActive ? "text-orange-400" : "text-black"
-                  }  text-white font-bold `
+                    isActive ? "text-orange-400" : "text-blue-500"
+                  } `
                 }
               >
-                Visit
+                Vist
               </NavLink>
             </li>
-            <li className="hover:bg-[#3a76cb] p-2 dark:text-white hover:rounded-md bg-orange-400 rounded-md">
+            <li className=" p-2 dark:text-white hover:rounded-md  rounded-md">
               <NavLink
                 to={"/about"}
                 onClick={() => {
@@ -218,14 +217,14 @@ function Header() {
                 }}
                 className={({ isActive }) =>
                   `font-bold ${
-                    isActive ? "text-orange-400" : "text-black"
-                  } text-white  font-bold`
+                    isActive ? "text-orange-400" : "text-blue-500"
+                  }  `
                 }
               >
                 About
               </NavLink>
             </li>
-            <li className="hover:bg-[#3a76cb] p-2 dark:text-white hover:rounded-md bg-orange-400 rounded-md">
+            <li className=" p-2 dark:text-white hover:rounded-md  rounded-md">
               <NavLink
                 to={"/enquiry"}
                 onClick={() => {
@@ -234,14 +233,14 @@ function Header() {
                 }}
                 className={({ isActive }) =>
                   `font-bold ${
-                    isActive ? "text-orange-400" : "text-black"
-                  }  text-white`
+                    isActive ? "text-orange-400" : "text-blue-500"
+                  }  `
                 }
               >
                 Enquiry
               </NavLink>
             </li>
-            <li className="hover:bg-[#3a76cb] p-2 dark:text-white hover:rounded-md bg-orange-400 rounded-md">
+            <li className=" p-2 dark:text-white hover:rounded-md  rounded-md">
               <NavLink
                 to={"/feedback"}
                 onClick={() => {
@@ -250,11 +249,11 @@ function Header() {
                 }}
                 className={({ isActive }) =>
                   `font-bold ${
-                    isActive ? "text-orange-400" : "text-black"
-                  }  text-white font-bold`
+                    isActive ? "text-orange-400" : "text-blue-500"
+                  } `
                 }
               >
-                FeedBack
+                Feedback
               </NavLink>
             </li>
           </ul>

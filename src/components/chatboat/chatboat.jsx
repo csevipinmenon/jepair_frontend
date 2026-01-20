@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-const key = import.meta.env.GEMINI_KEY;
+const key = import.meta.env.VITE_GEMINI_KEY;
 
 function JepairBot() {
   const [question, setQuestion] = useState("");

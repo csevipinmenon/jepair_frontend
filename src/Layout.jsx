@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Outlet, useNavigation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Outlet, } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
-import ThemeProvider from "./context/themecontext";
+import ThemeProvider from "./context/themecontext.js";
 
 import ScrollToTop from "./components/scrollTop/ScrollTop";
 

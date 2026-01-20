@@ -2,10 +2,10 @@ import React from "react";
 
 function Lastdecscription() {
   return (
-    <div className="sm:px-60 sm:py-10 px-9 py-8">
+    <div className="sm:px-60 dark:bg-[#343a46]  dark:text-white sm:py-10 px-9 py-8">
       <p className="text-lg">
-        As India’s largest service provider, <span className="font-bold text-orange-400">Jepair</span> <span className="font-bold text-blue-500">Bazaar</span> is one of the most
-        trustable destinations for your <span className="font-bold text-[#333333]">Home Appliance Repair Service</span>. At Jepair
+        As India’s largest service provider, <span className="font-bold text-orange-400">Jepair</span> <span className="font-bold dark:text-blue-300 text-blue-500">Bazaar</span> is one of the most
+        trustable destinations for your <span className="font-bold dark:text-white text-[#333333]">Home Appliance Repair Service</span>. At Jepair
         Bazaar we have a team of experienced technicians who visit your location
         and repair your home appliance <br></br> at your doorstep. We service and repair a
         wide range of home appliances which contains AC Repair Service,

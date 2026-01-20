@@ -6,6 +6,7 @@ import Mobileotp from "../msg/Mobileotp";
 import { handlerError, handlerSuccess } from "../../utils.js";
 import { ToastContainer } from "react-toastify";
 
+const API_URL = import.meta.env.VITE_API_URL;
 
 function BookProcess() {
   const { user, loginWithRedirect, isAuthenticated, logout } = useAuth0();
@@ -27,7 +28,6 @@ function BookProcess() {
   });
 
   const [loading, setLoading] = useState(false); //for loction
- 
 
   const [loading1, setLoading1] = useState(false); //for api book
 
@@ -51,7 +51,6 @@ function BookProcess() {
           );
           const data = await res.json();
           const address = data.address;
-          console.log(data);
 
           setFormData({
             town: address.city || address.town || address.village || "",
@@ -107,7 +106,7 @@ function BookProcess() {
 
     try {
       setLoading1(true);
-      const url = "http://localhost:3000/jepairbazaar/mobileotp";
+      const url = `${API_URL}/mobileotp`;
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -116,7 +115,7 @@ function BookProcess() {
         body: JSON.stringify({ phone: `+91${formData.phone}` }),
       });
       const result = await response.json();
-      console.log(result);
+      
       const { success, message, error } = result;
       if (success) {
         setMobileotp(true);
@@ -137,19 +136,23 @@ function BookProcess() {
       {showMobileotp && (
         <Mobileotp formData={formData} setMobileotp={setMobileotp} />
       )}
-      
-      <div className="flex justify-center bg-[#f2f2f2] items-center ">
-        
-        <img src="book.jpg" className="h-[350px] bg-cover bg-white w-auto  shadow-xl shadow-blue-400 rounded-2xl" />
+
+      <div className="flex justify-center dark:bg-[#343a46] dark:text-white bg-[#f2f2f2] py-7 items-center ">
+        <img
+          src="book.jpg"
+          className="h-[350px] bg-cover bg-white w-auto  shadow-xl shadow-blue-400 rounded-2xl"
+        />
       </div>
-      <div className="bg-[#f2f2f2]  flex items-end justify-center p-10 lg:p-0 ">
-        <div className=" bg-white  border border-blue-500 shadow-2xl  py-16 lg:px-32 rounded-3xl mt-10 mb-16 ">
-          <h2 className="text-center font-bold text-4xl text-orange-500 animate-pulse ">
-            Book <span className="text-blue-500">Now </span>
+      <div className="bg-[#f2f2f2]  dark:bg-[#343a46] dark:text-white flex justify-center px-4 sm:px-10 lg:px-0">
+        <div className="bg-white  dark:bg-gray-800 dark:text-white w-full max-w-3xl shadow-2xl rounded-3xl mt-10 mb-16 py-10 px-6 sm:px-10">
+          <h2 className="text-center font-bold text-3xl sm:text-4xl text-orange-500 animate-pulse">
+            Book <span className="text-blue-500">Now</span>
           </h2>
-          <form className="py-5 px-10" onSubmit={bookServicFunction}>
-            <div className=" ">
-              <label htmlFor="name" className="block font-bold  ">
+
+          <form className="mt-6 space-y-4" onSubmit={bookServicFunction}>
+            {/* Name */}
+            <div>
+              <label htmlFor="name" className="block font-bold">
                 Name
               </label>
               <input
@@ -160,11 +163,11 @@ function BookProcess() {
                 name="name"
                 value={user?.name}
                 placeholder="Enter your name"
-                className="w-full border border-orange-400  px-2 py-1.5 focus:outline-1 focus:outline-blue-500"
+                className="w-full border border-orange-400 px-2 dark:bg-gray-800 dark:text-white dark:border-[#343a46] py-1.5 focus:outline-blue-500 rounded"
               />
             </div>
 
-            <div className="mt-4">
+            <div>
               <label htmlFor="phn" className="block font-bold">
                 Phone Number
               </label>
@@ -176,10 +179,12 @@ function BookProcess() {
                 onChange={handleChange}
                 maxLength={10}
                 placeholder="Enter your phone number"
-                className="w-full border border-orange-400 px-2 py-1.5 focus:outline-1 focus:outline-blue-500"
+                className="w-full border border-orange-400 dark:bg-gray-800 dark:text-white px-2 py-1.5 dark:border-[#343a46] focus:outline-blue-500 rounded"
               />
             </div>
-            <div className="mt-4">
+
+           
+            <div>
               <label htmlFor="email" className="block font-bold">
                 Email
               </label>
@@ -191,29 +196,31 @@ function BookProcess() {
                 readOnly
                 value={user?.email}
                 placeholder="Enter your email"
-                className="w-full border border-orange-400 px-2 py-1.5 focus:outline-1 focus:outline-blue-500"
+                className="w-full border border-orange-400 dark:bg-gray-800 dark:text-white px-2 py-1.5 dark:border-[#343a46] focus:outline-blue-500 rounded"
               />
             </div>
-            <div className="max-w-md mx-auto border p-4 rounded shadow border-blue-500 mt-6">
-              <span className="font-semibold">
+
+            <div className="border border-blue-500 p-4 rounded dark:border-[#343a46] shadow-md">
+              <p className="font-semibold text-sm mb-4">
                 Save time. Autofill your current location.
-              </span>
+              </p>
               <button
                 type="button"
-                className="bg-orange-500 hover:bg-blue-500 text-white px-3  ml-7 py-1.5 rounded text-sm mb-4 animate-pulse"
+                className="bg-orange-500 hover:bg-blue-500  text-white px-4 py-2 rounded text-sm mb-4 animate-pulse"
                 onClick={handleAutoFill}
                 disabled={loading}
               >
                 {loading ? "Fetching location..." : "Auto-Fill"}
               </button>
 
-              <div className="mt-4">
+             
+              <div className="mt-3">
                 <label className="block font-bold">Town/City</label>
                 <select
                   name="town"
                   value={formData.town}
                   onChange={handleChange}
-                  className="w-full border border-orange-400 px-2 py-1.5 focus:outline-1 focus:outline-blue-500"
+                  className="w-full border border-orange-400 px-2 py-1.5  dark:border-[#343a46] dark:bg-gray-800 dark:text-white focus:outline-blue-500 rounded"
                   required
                 >
                   <option value="" disabled>
@@ -227,13 +234,14 @@ function BookProcess() {
                 </select>
               </div>
 
-              <div className="mt-4">
+           
+              <div className="mt-3">
                 <label className="block font-bold">State</label>
                 <select
                   name="state"
                   value={formData.state}
                   onChange={handleChange}
-                  className="w-full border border-orange-400 px-2 py-1.5 focus:outline-1 focus:outline-blue-500"
+                  className="w-full border border-orange-400 px-2  dark:border-[#343a46]  dark:bg-gray-800 dark:text-white py-1.5 focus:outline-blue-500 rounded"
                   required
                 >
                   <option value="" disabled>
@@ -247,7 +255,8 @@ function BookProcess() {
                 </select>
               </div>
 
-              <div className="mt-4">
+             
+              <div className="mt-3">
                 <label htmlFor="pin" className="block font-bold">
                   Pincode
                 </label>
@@ -260,11 +269,12 @@ function BookProcess() {
                   maxLength={6}
                   required
                   placeholder="Enter your pincode"
-                  className="w-full border border-orange-400 px-2 py-1.5 focus:outline-1 focus:outline-blue-500"
+                  className="w-full border border-orange-400 dark:border-[#343a46] dark:bg-gray-800 dark:text-white px-2 py-1.5 focus:outline-blue-500 rounded"
                 />
               </div>
 
-              <div className="mt-4">
+         
+              <div className="mt-3">
                 <label htmlFor="area" className="block font-bold">
                   Area, Street, Sector, Village
                 </label>
@@ -276,21 +286,26 @@ function BookProcess() {
                   onChange={handleChange}
                   required
                   placeholder="Chiraiyatand Main Road, Prithvipur, Chiraiyatand"
-                  className="w-full border border-orange-400 px-2 py-1.5 focus:outline-1 focus:outline-blue-500"
+                  className="w-full border border-orange-400 dark:bg-gray-800 dark:border-[#343a46] dark:text-white px-2 py-1.5 focus:outline-blue-500 rounded"
                 />
               </div>
 
-              <div className="mt-6">
-                <button className="bg-orange-500 hover:bg-blue-500 text-white ml-36 px-4 py-2 rounded text-sm">
+              
+              <div className="mt-4 text-center ">
+                <button
+                  type="button"
+                  className="bg-orange-500 hover:bg-blue-500 text-white px-6 py-2 rounded"
+                >
                   Save Address
                 </button>
               </div>
             </div>
 
-            <div className="mt-4">
+        
+            <div>
               <label className="block font-bold">Services</label>
               <select
-                className="w-full border border-orange-400 px-2 py-1.5 focus:outline-1 focus:outline-blue-500"
+                className="w-full border border-orange-400  dark:border-[#343a46] dark:bg-gray-800 dark:text-whitepx-2 py-1.5 focus:outline-blue-500 rounded"
                 required
                 name="service"
                 value={formData.service}
@@ -299,20 +314,22 @@ function BookProcess() {
                 <option value="" disabled>
                   Select your service
                 </option>
-                <option value={"plumber"}>Plumber</option>
-                <option value={"electrician"}>Electrician</option>
-                <option value={"washing"}>Washing</option>
-                <option value={"cleaning"}>Cleaning</option>
-                <option value={"maid"}>Maid</option>
-                <option value={"beauty spa"}>Beauty spa</option>
-                <option value={"contractor"}>Contractor</option>
-                <option value={"decoration"}>Decoration</option>
-                <option value={"massage"}>Massage</option>
+                <option value="plumber">Plumber</option>
+                <option value="electrician">Electrician</option>
+                <option value="washing">Washing</option>
+                <option value="cleaning">Cleaning</option>
+                <option value="maid">Maid</option>
+                <option value="beauty spa">Beauty Spa</option>
+                <option value="contractor">Contractor</option>
+                <option value="decoration">Decoration</option>
+                <option value="massage">Massage</option>
               </select>
             </div>
-            <div className="mt-4">
+
+            
+            <div>
               <label htmlFor="date" className="block font-bold">
-                Date of Services
+                Date of Service
               </label>
               <input
                 type="date"
@@ -321,24 +338,28 @@ function BookProcess() {
                 name="date"
                 value={formData.date}
                 onChange={handleChange}
-                className="w-full border border-orange-400 px-2 py-1.5 focus:outline-1 focus:outline-blue-500"
+                className="w-full border border-orange-400 px-2 dark:border-[#343a46] dark:bg-gray-800 dark:text-white py-1.5 focus:outline-blue-500 rounded"
               />
             </div>
-            <div className="mt-4">
+
+         
+            <div>
               <label htmlFor="time" className="block font-bold">
-                Time of Services
+                Time of Service
               </label>
               <input
                 type="time"
-                id="email"
+                id="time"
                 required
                 name="time"
                 value={formData.time}
                 onChange={handleChange}
-                className="w-full border border-orange-400 px-2 py-1.5 focus:outline-1 focus:outline-blue-500"
+                className="w-full border border-orange-400 px-2 dark:border-[#343a46] dark:bg-gray-800 dark:text-white py-1.5 focus:outline-blue-500 rounded"
               />
             </div>
-            <div className="mt-4 ">
+
+           
+            <div>
               <label htmlFor="msg" className="block font-bold">
                 Message
               </label>
@@ -348,15 +369,17 @@ function BookProcess() {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full border border-orange-400 px-2 py-1.5 focus:outline-1 focus:outline-blue-500"
-                placeholder="Enter your message: eg-Please come early."
+                placeholder="Enter your message: e.g. Please come early."
+                className="w-full border border-orange-400 px-2 py-1.5 dark:border-[#343a46] dark:bg-gray-800 dark:text-white focus:outline-blue-500 rounded"
               ></textarea>
             </div>
-            <div>
+
+            
+            <div className="text-center">
               <button
                 type="submit"
                 disabled={loading1}
-                className=" mt-7 bg-orange-500 inline  py-2 px-40 rounded-xl text-white font-bold text-lg hover:bg-blue-500 transition-all hover:-translate-y-1"
+                className="mt-6 bg-orange-500 hover:bg-blue-500 text-white px-6 py-2 rounded-xl font-bold text-lg transition-all hover:-translate-y-1"
               >
                 {loading1 ? (
                   <div className="flex justify-center items-center">
@@ -370,6 +393,7 @@ function BookProcess() {
           </form>
         </div>
       </div>
+
       <ToastContainer />
       <Faq />
     </div>
